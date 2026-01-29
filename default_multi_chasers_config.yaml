@@ -1,0 +1,96 @@
+# General configuration
+policy: "drl_vo"
+chaser_policy: "drl_vo"
+training_object: "chaser"
+seed: 1
+itr: 1
+chaser_num: 3  # Number of chaser agents
+
+# Robot model configuration
+robot_model: "differential"
+robot_eval_model: "differential"
+robot_test_model: "differential"
+chaser_model: "differential"
+chaser_eval_model: "differential" 
+chaser_test_model: "differential"
+use_angular: false
+random_radius: true
+
+# Environment settings
+random_chaser_reset: true
+random_robot_goal: true
+timeout_penalty: -0.6
+
+# Device settings
+device: "cuda"
+
+# Replay buffer settings
+prefilling_size: 10000
+prefill_ratio: [0.8, 0.2]
+replay_buffer_capacity: 150000
+
+# Training parameters
+start_timesteps: 10000
+eval_freq: 20000
+save_model_freq: 200000
+max_timesteps: 6000000
+batch_size: 128
+hidden_dim: 1024
+
+# Critic parameters
+critic_lr: 0.001
+critic_beta: 0.9
+critic_tau: 0.01
+critic_target_update_freq: 2
+
+# Actor parameters
+actor_lr: 0.001
+actor_beta: 0.9
+actor_log_std_min: -10
+actor_log_std_max: 2
+actor_update_freq: 2
+
+# Encoder/decoder parameters
+encoder_type: "pixel"
+encoder_feature_dim: 50
+encoder_lr: 0.001
+encoder_tau: 0.05
+decoder_type: "identity"
+decoder_lr: 0.001
+decoder_update_freq: 1
+decoder_latent_lambda: 0.000001
+decoder_weight_lambda: 0.0000001
+num_layers: 4
+num_filters: 32
+
+# SAC parameters
+discount: 0.99
+init_temperature: 0.1
+alpha_lr: 0.0001
+alpha_beta: 0.5
+
+# Chaser model paths
+chaser_models:
+  - "/mnt/ssd1/stilrmy/Navigation/drl_vo_3_adversaries/2025-03-13/seed_1/itr_1/chaser_models/chaser_0/step_1680000chaser_0_success_62"
+  - "/mnt/ssd1/stilrmy/Navigation/drl_vo_3_adversaries/2025-03-13/seed_1/itr_1/chaser_models/chaser_1/step_1680000chaser_1_success_70"
+  - "/mnt/ssd1/stilrmy/Navigation/drl_vo_3_adversaries/2025-03-13/seed_1/itr_1/chaser_models/chaser_2/step_1680000chaser_2_success_61"
+
+# Model loading parameters
+load_model_path: ""
+load_pre_model_path: ""
+load_chaser: false
+load_test_path: ""
+
+# Environment settings
+action_dim: 2
+lidar_dim: 1800
+lidar_feature_dim: 50
+image_size: 100
+frame_stack: 3
+robot_goal_state_dim: 4
+laser_angle_resolute: 0.003490659
+laser_min_range: 0.27
+laser_max_range: 6.0
+human_num_max: 4
+static_obstacle_num_max: 3
+square_width: 10.0 
